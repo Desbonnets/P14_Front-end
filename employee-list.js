@@ -24,8 +24,10 @@ $(function() {
         return objects;
     };
 
-    let employees = JSON.parse(localStorage.getItem('employees'));
-    employees = employees.concat(generateObjects());
+    let employees = generateObjects();
+    if(localStorage.getItem('employees')){
+        employees = employees.concat(JSON.parse(localStorage.getItem('employees')));
+    }
 
     $('#employee-table').DataTable({
         data: employees,
